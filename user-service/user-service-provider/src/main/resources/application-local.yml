@@ -20,3 +20,5 @@ spring:
 logging:
   level:
     org.hehaoming: debug
+server:
+  port: 8001
