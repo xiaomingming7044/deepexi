@@ -10,9 +10,11 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import static org.hehaoming.user.constant.Constant.MY_TIPS;
 
 @Component
 public class ApplicationErrorAttributes extends DefaultErrorAttributes {
+
 
     @Autowired
     public ApplicationErrorAttributes(ServerProperties serverProperties) {
@@ -46,6 +48,20 @@ public class ApplicationErrorAttributes extends DefaultErrorAttributes {
             }
         } else {
             resultAttributes.put("code", "-2");
+        }
+
+        //校验失败不打印stack信息
+        if (attributes.get("message") != null) {
+            String mes = attributes.get("message").toString();
+            if (MY_TIPS.equals(mes.substring(0, 4))) {
+                return resultAttributes;
+            }
+            //截取stack中的提示返回前端
+            if ("Validation".equals(mes.substring(0, 10))) {
+                String[] strs = attributes.get("trace").toString().split("]] ")[0].split("\\[");
+                resultAttributes.put("message", MY_TIPS + strs[strs.length - 1]);
+                return resultAttributes;
+            }
         }
 
         if (includeStackTrace) {

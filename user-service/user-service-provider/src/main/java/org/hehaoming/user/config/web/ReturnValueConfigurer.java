@@ -49,13 +49,13 @@ public class ReturnValueConfigurer implements InitializingBean {
             if (!delegate.supportsReturnType(methodParameter)) {
                 return false;
             }
-
-            if (AnnotationUtils.findAnnotation(methodParameter.getMethod(), Payload.class) != null) {
-                return true;
-            } else {
-                Class<?> clazz = methodParameter.getContainingClass();
-                return AnnotationUtils.findAnnotation(clazz, Payload.class) != null;
-            }
+            return true;
+//            if (AnnotationUtils.findAnnotation(methodParameter.getMethod(), Payload.class) != null) {
+//                return true;
+//            } else {
+//                Class<?> clazz = methodParameter.getContainingClass();
+//                return AnnotationUtils.findAnnotation(clazz, Payload.class) != null;
+//            }
         }
 
         @Override
