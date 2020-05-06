@@ -6,7 +6,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
 swagger:
-  base-package: org.hehaoming.controller
+  base-package: org.hehaoming.user.controller
   info:
     title: message-service
 server:
