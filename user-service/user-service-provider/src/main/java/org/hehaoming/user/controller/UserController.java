@@ -53,17 +53,13 @@ public class UserController {
 
     @PostMapping("findLikeUser")
     @ApiOperation(value = "模糊查询，无需查询的字段不用传")
-    public Page<UserDTO> findLikeUser(@RequestBody FindLikeUser findLikeUser) {
+    public Pagination<UserDTO> findLikeUser(@RequestBody FindLikeUser findLikeUser) {
         Page page =  PageHelper.startPage(findLikeUser.getPage(),findLikeUser.getSize());
         FindUser findUser = new FindUser();
         BeanUtils.copyProperties(findLikeUser,findUser);
         List<UserDTO> userDTOList = userMapper.findLikeUser(findUser);
 
-
-
-//        page.get
-        new Pagination(userDTOList.size(), page.getPageNum(), userDTOList.size(), userDTOList);
-        return null;
+        return new Pagination(page.getPageNum(), page.getPageSize(), page.getPages(), page.getTotal(), userDTOList);
     }
 
     @PostMapping("addUser")

@@ -11,12 +11,15 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class Pagination<T> {
-    private int page;
-    private int size;
-    @ApiModelProperty(value = "总行数", required = false)
-    private int total;
-    @ApiModelProperty(value = "行数据", hidden = true)
+    private int pageNum;//第几页
+    private int pageSize;//每页几行
 
+    private int pages;//总页数
+
+    @ApiModelProperty(value = "总行数", hidden = true)
+    private Long total;
+
+    @ApiModelProperty(value = "行数据", hidden = true)
     private List<T> rows;
 
 }
