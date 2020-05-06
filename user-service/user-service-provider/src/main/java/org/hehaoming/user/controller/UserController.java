@@ -16,7 +16,10 @@ import org.hehaoming.user.domain.vo.FindLikeUser;
 import org.hehaoming.user.domain.vo.Pagination;
 import org.hehaoming.user.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;

@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 
 import javax.validation.Validator;
-import java.util.UUID;
 
 @Component
 public class ValidationUtils {
@@ -40,10 +39,5 @@ public class ValidationUtils {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println((Math.random()*100)+10);
-        System.out.println((Math.random()*10));
-        System.out.println((Math.random()*10));
-    }
 
 }
