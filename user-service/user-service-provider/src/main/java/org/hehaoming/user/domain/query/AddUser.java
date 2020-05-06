@@ -1,5 +1,6 @@
 package org.hehaoming.user.domain.query;
 
+import lombok.AllArgsConstructor;
 import org.hehaoming.user.exception.Phone;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @ApiModel
+@AllArgsConstructor
 public class AddUser {
     @Phone
     @ApiModelProperty(value = "手机号码，未添加过的")

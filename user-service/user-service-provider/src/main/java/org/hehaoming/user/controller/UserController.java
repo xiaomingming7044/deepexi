@@ -16,7 +16,6 @@ import org.hehaoming.user.domain.vo.FindLikeUser;
 import org.hehaoming.user.domain.vo.Pagination;
 import org.hehaoming.user.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -54,7 +53,7 @@ public class UserController {
     @PostMapping("findLikeUser")
     @ApiOperation(value = "模糊查询，无需查询的字段不用传")
     public Pagination<UserDTO> findLikeUser(@RequestBody FindLikeUser findLikeUser) {
-        Page page =  PageHelper.startPage(findLikeUser.getPage(),findLikeUser.getSize());
+        Page page =  PageHelper.startPage(findLikeUser.getPageNum(),findLikeUser.getPageSize());
         FindUser findUser = new FindUser();
         BeanUtils.copyProperties(findLikeUser,findUser);
         List<UserDTO> userDTOList = userMapper.findLikeUser(findUser);
