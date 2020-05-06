@@ -1,7 +1,6 @@
 package org.hehaoming.user.config.web;
 
 
-import org.hehaoming.user.controller.Payload;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

@@ -17,10 +17,6 @@ spring:
     port: 5672
     username: guest
     password: guest
-swagger:
-  base-package: org.hehaoming.user.controller
-  info:
-    version: "1.0.0"
-    title: "Swagger Petstore"
-    contact:
-      email: "apiteam@swagger.io"
+logging:
+  level:
+    org.hehaoming: debug
