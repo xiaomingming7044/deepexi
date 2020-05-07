@@ -35,3 +35,7 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 ```
+
+脚手架构建：https://github.com/deepexi/generator-deepexi-spring-cloud
+
+分页插件：https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md
