@@ -2,9 +2,12 @@ package org.hehaoming.message.config;
 
 import lombok.Data;
 import lombok.ToString;
+import org.hehaoming.message.domain.query.AddMessage;
+import org.hehaoming.message.service.MessageService;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -18,12 +21,16 @@ public class RabbitMQDemoConfiguration {
     }
 
 
+    @Autowired
+    private MessageService messageService;
+
     @RabbitListener(id="UpdateBotReceiver", queues = "test.queue", containerFactory="rabbitListenerContainerFactory")
     public class Receiver {
 
         @RabbitHandler
         public void process(String str) {
-            System.out.println(str);
+            String[] s = str.split("_",2);
+            messageService.addMessage(new AddMessage(Integer.parseInt(s[0]),s[1]));
         }
     }
 
@@ -32,5 +39,9 @@ public class RabbitMQDemoConfiguration {
     class ContentDto {
         private Long id;
         private String content;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

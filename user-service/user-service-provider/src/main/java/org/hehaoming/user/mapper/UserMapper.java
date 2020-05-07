@@ -15,7 +15,7 @@ public interface UserMapper {
 
     @Insert("INSERT INTO `user`(`phone`,`name`,`pwd`) VALUES(#{phone},#{name},#{pwd})")
     @Options(useGeneratedKeys = true)
-    void saveUser(AddUser addUserVO);
+    void addUser(AddUser addUserVO);
 
     @Select("<script> " +
             "SELECT * FROM `user` where 1=1 " +

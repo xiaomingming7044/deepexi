@@ -1,6 +1,7 @@
 package org.hehaoming.message.config.web;
 
 
+import org.hehaoming.message.constant.Constant;
 import org.hehaoming.message.exception.BizErrorResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -11,6 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 @Component
 public class ApplicationErrorAttributes extends DefaultErrorAttributes {
@@ -36,17 +38,24 @@ public class ApplicationErrorAttributes extends DefaultErrorAttributes {
         if (status >= 400 && status < 500) {
             Throwable error = getError(webRequest);
             if (error != null) {
-                BizErrorResponseStatus annotation = AnnotationUtils.findAnnotation(error.getClass(), BizErrorResponseStatus.class);
-                if (annotation != null) {
-                    resultAttributes.put("code", annotation.value());
-                } else {
-                    resultAttributes.put("code", "-1");
-                }
-            } else {
                 resultAttributes.put("code", "-1");
             }
         } else {
             resultAttributes.put("code", "-2");
+        }
+
+        //校验失败不打印stack信息
+        if (attributes.get("message") != null) {
+            String mes = attributes.get("message").toString();
+//            if (Constant.MY_TIPS.equals(mes.substring(0, 4))) {
+//                return resultAttributes;
+//            }
+            //截取stack中的提示返回前端
+            if ("Validation".equals(mes.substring(0, 10))) {
+                String[] strs = attributes.get("trace").toString().split("]] ")[0].split("\\[");
+                resultAttributes.put("message", Constant.MY_TIPS + strs[strs.length - 1]);
+                return resultAttributes;
+            }
         }
 
         if (includeStackTrace) {

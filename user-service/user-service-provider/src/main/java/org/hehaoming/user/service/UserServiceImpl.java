@@ -11,6 +11,7 @@ import org.hehaoming.user.domain.vo.FindLikeUser;
 import org.hehaoming.user.domain.vo.Pagination;
 import org.hehaoming.user.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +22,8 @@ public class UserServiceImpl {
 
     @Resource
     private UserMapper userMapper;
+    @Autowired
+    private RabbitMQDemoServiceImpl mqDemoService;
 
     public Pagination<UserDTO> findLikeUser(FindLikeUser findLikeUser){
         Page page =  PageHelper.startPage(findLikeUser.getPageNum(),findLikeUser.getPageSize());
@@ -35,7 +38,9 @@ public class UserServiceImpl {
         if (userMapper.exactFindUser(new FindUser(null, addUser.getPhone(), null, false)).size() >= 1) {
             throw new Exception(Constant.PHONE_IS_REGIST);
         }
-        userMapper.saveUser(addUser);
+        userMapper.addUser(addUser);
+        UserDTO userDTO = userMapper.exactFindUser(new FindUser(null,addUser.getPhone(),null,false)).get(0);
+        mqDemoService.produce(userDTO.getId()+"_"+userDTO.getName()+Constant.WELCOME);
         return Constant.SUCCESS;
     }
 

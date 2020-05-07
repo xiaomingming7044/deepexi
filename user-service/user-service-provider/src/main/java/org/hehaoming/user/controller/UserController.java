@@ -29,23 +29,9 @@ import java.util.List;
 })
 public class UserController {
 
-
-    private RabbitMQDemoServiceImpl mqDemoService;
+    @Autowired
     private UserServiceImpl userService;
 
-
-
-    @Autowired
-    public UserController(RabbitMQDemoServiceImpl mqDemoService, UserServiceImpl userService) {
-        this.mqDemoService = mqDemoService;
-        this.userService = userService;
-    }
-
-    @GetMapping("greeting")
-    public String sayHello(String str) {
-        mqDemoService.produce(str);
-        return "welcome!";
-    }
 
     @PostMapping("findLikeUser")
     @ApiOperation(value = "模糊查询，无需查询的字段不用传")
@@ -56,6 +42,7 @@ public class UserController {
     @PostMapping("addUser")
     @ApiOperation(value = "添加用户")
     public String addUser(@Valid @RequestBody AddUser addUser) throws Exception {
+
         return userService.addUser(addUser);
     }
 
