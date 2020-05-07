@@ -14,8 +14,8 @@ public class MessageService {
     @Resource
     private MessageMapper messageMapper;
 
-    public String addUser(AddMessage addMessage){
-        messageMapper.saveUser(addMessage);
+    public String addMessage(AddMessage addMessage){
+        messageMapper.saveMessage(addMessage);
         return  Constant.SUCCESS;
     }
 

@@ -10,7 +10,7 @@ public interface MessageMapper {
 
     @Insert("INSERT INTO `message`(`receiver_id`,`content`) VALUES(#{receiverId},#{content})")
     @Options(useGeneratedKeys = true)
-    void saveUser(AddMessage addMessage);
+    void saveMessage(AddMessage addMessage);
 
 
 }

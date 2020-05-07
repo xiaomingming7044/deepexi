@@ -3,10 +3,6 @@ spring:
     name: message-service
   profiles:
     active: local
-#swagger:
-#  base-package: org.hehaoming.user.controller
-#  info:
-#    title: message-service
 server:
   error:
     include-stacktrace: always

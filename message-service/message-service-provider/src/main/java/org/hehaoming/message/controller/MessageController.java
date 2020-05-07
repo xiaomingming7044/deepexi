@@ -21,10 +21,10 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @PostMapping("addUser")
-    @ApiOperation(value = "添加用户")
-    public String addUser(@Valid @RequestBody AddMessage addMessage) throws Exception {
-        return messageService.addUser(addMessage);
+    @PostMapping("addMessage")
+    @ApiOperation(value = "添加消息")
+    public String addMessage(@Valid @RequestBody AddMessage addMessage) throws Exception {
+        return messageService.addMessage(addMessage);
     }
 
 
