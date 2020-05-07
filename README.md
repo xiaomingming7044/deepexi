@@ -1,6 +1,10 @@
 user-service：用户的增删改查，新增用户通过rabbitMq调用message-service发送欢迎信息。
 
+链接：http://212.64.1.106:8001/swagger-ui.html
+
 message-service：用户消息的查看和新增。
+
+链接：http://212.64.1.106:8002/swagger-ui.html
 
 ```mysql
 CREATE TABLE `user` (
