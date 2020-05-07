@@ -1,27 +1,20 @@
 package org.hehaoming.user.controller;
 
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.hehaoming.user.constant.Constant;
 import org.hehaoming.user.domain.dto.UserDTO;
 import org.hehaoming.user.domain.query.AddUser;
-import org.hehaoming.user.domain.query.FindUser;
 import org.hehaoming.user.domain.query.UpdateUser;
 import org.hehaoming.user.domain.vo.FindLikeUser;
 import org.hehaoming.user.domain.vo.Pagination;
-import org.hehaoming.user.mapper.UserMapper;
 import org.hehaoming.user.service.RabbitMQDemoServiceImpl;
 import org.hehaoming.user.service.UserServiceImpl;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -40,8 +33,6 @@ public class UserController {
     private RabbitMQDemoServiceImpl mqDemoService;
     private UserServiceImpl userService;
 
-    @Resource
-    private UserMapper userMapper;
 
 
     @Autowired

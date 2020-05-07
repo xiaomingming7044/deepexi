@@ -3,12 +3,10 @@ spring:
     name: message-service
   profiles:
     active: local
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-swagger:
-  base-package: org.hehaoming.user.controller
-  info:
-    title: message-service
+#swagger:
+#  base-package: org.hehaoming.user.controller
+#  info:
+#    title: message-service
 server:
   error:
     include-stacktrace: always
@@ -24,3 +22,4 @@ management:
         include: '*'
 mybatis:
   mapper-locations: 'classpath:mapper/*.xml'
+  config-location: 'classpath:mybatis-config.xml'

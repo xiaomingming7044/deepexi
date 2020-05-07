@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class FindLikeUser {
 
+
     private int pageNum;
 
     private int pageSize;
