@@ -26,6 +26,7 @@ public class UserServiceImpl {
     private RabbitMQDemoServiceImpl mqDemoService;
 
     public Pagination<UserDTO> findLikeUser(FindLikeUser findLikeUser){
+        if(findLikeUser == null) findLikeUser = new FindLikeUser();
         Page page =  PageHelper.startPage(findLikeUser.getPageNum(),findLikeUser.getPageSize());
         FindUser findUser = new FindUser();
         BeanUtils.copyProperties(findLikeUser,findUser);
@@ -40,8 +41,9 @@ public class UserServiceImpl {
         }
         userMapper.addUser(addUser);
         UserDTO userDTO = userMapper.exactFindUser(new FindUser(null,addUser.getPhone(),null,false)).get(0);
-        mqDemoService.produce(userDTO.getId()+"_"+userDTO.getName()+Constant.WELCOME);
-        return Constant.SUCCESS;
+        String message = userDTO.getName()+Constant.WELCOME;
+        mqDemoService.produce(userDTO.getId()+"_"+message);
+        return Constant.SUCCESS+"并发送了欢迎信息："+message;
     }
 
     public String deleteUser(List<Integer> ids) throws Exception{

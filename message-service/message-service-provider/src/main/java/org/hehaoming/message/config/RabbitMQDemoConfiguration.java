@@ -1,7 +1,5 @@
 package org.hehaoming.message.config;
 
-import lombok.Data;
-import lombok.ToString;
 import org.hehaoming.message.domain.query.AddMessage;
 import org.hehaoming.message.service.MessageService;
 import org.springframework.amqp.core.Queue;
@@ -34,14 +32,4 @@ public class RabbitMQDemoConfiguration {
         }
     }
 
-    @Data
-    @ToString
-    class ContentDto {
-        private Long id;
-        private String content;
-    }
-
-    public static void main(String[] args) {
-
-    }
 }
