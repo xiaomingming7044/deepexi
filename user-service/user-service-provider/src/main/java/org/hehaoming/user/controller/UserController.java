@@ -34,7 +34,7 @@ public class UserController {
 
 
     @PostMapping("findLikeUser")
-    @ApiOperation(value = "模糊查询，无需查询的字段不用传")
+    @ApiOperation(value = "分页模糊查询，无需查询的字段不用传")
     public Pagination<UserDTO> findLikeUser( @RequestBody(required = false) FindLikeUser findLikeUser) {
         return userService.findLikeUser(findLikeUser);
     }
