@@ -61,10 +61,12 @@ public class BaseTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(JSONObject.toJSONString(findLikeUser).getBytes())
         )
-                .andExpect(jsonPath("$.code", is("1")))
+                .andExpect(jsonPath("$.payload.rows[0].name", is("hhm")))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
+/*
+Body = {"code":"1","payload":{"pageNum":1,"pageSize":5,"pages":4,"rows":[{"gmtCreate":1588491138000,"gmtModified":1588491482000,"id":1,"isDeleted":true,"name":"hhm","phone":"13133333333","pwd":"123"},{"gmtCreate":1588491542000,"gmtModified":1588493879000,"id":2,"isDeleted":true,"name":"sdfa","phone":"13122222222","pwd":"string"},{"gmtCreate":1588573632000,"gmtModified":1588573780000,"id":4,"isDeleted":true,"name":"string","phone":"13122222222","pwd":"string"},{"gmtCreate":1588573785000,"gmtModified":1588573834000,"id":5,"isDeleted":true,"name":"string","phone":"13122222222","pwd":"string"},{"gmtCreate":1588573851000,"gmtModified":1588575374000,"id":6,"isDeleted":false,"name":"string","phone":"13111111211","pwd":"string"}],"total":18},"success":true}
+ */
     }
 
 
